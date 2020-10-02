@@ -7,13 +7,17 @@
 
 ## Introduction
 
-Trend analysis of aeolian streamer behaviour for various wind conditions by running MATLAB file "trendAnalysis.m". Solely tested on MATLAB R2019b and later versions.
-
+Trend analysis of aeolian streamer behaviour for various wind conditions by running MATLAB file "trendAnalysis.m".
 
 ### Repository version
 
-Version 0.1.2
+v0.1.3
 
+## Dependencies
+
+- Tested on macOS v10.15.7
+- Tested on MATLAB R2019b and later versions
+- Image Processing Toolbox (optional)
 
 ## Generated figures
 
@@ -24,7 +28,6 @@ Plot 2: Fit of plot 1 (note the logarithmic y-axis).
 Plot 3: Determine height of the saltation layer.
 
 Plot 4: Check for sensitivity equality amongst all sensors.
-
 
 ## Project organization
 
@@ -52,6 +55,9 @@ Plot 4: Check for sensitivity equality amongst all sensors.
 
 ```
 
+## Report
+
+More specific information on the data acquisition, code and results can be found in the report "JWB_Aeolian_Streamers_V2".
 
 ## License
 
