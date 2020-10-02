@@ -1,8 +1,18 @@
 # Aeolian streamers
 
-Version 0.1.0
+<p align="center">
+  <img src="results/figures/Streamers.png" width="600px" alt="Sherloq" />
+  <br><b>Aeolian streamers on a beach</b>
+</p>
+
+## Introduction
 
 Trend analysis of aeolian streamer behaviour for various wind conditions.
+
+
+## Version
+
+Version 0.1.2
 
 
 ## Project organization
