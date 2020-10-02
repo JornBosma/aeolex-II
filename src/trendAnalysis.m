@@ -18,6 +18,7 @@ for n = 2:4
     ossi(n) = load(['OSSI', '_', num2str(dt), unitt]);
 end
 
+% allign data
 ossi(2).T_mean.AeolusTime = ossi(2).T_mean.AeolusTime + 91;
 ossi(3).T_mean.AeolusTime = ossi(3).T_mean.AeolusTime + 65;
 ossi(4).T_mean.AeolusTime = ossi(4).T_mean.AeolusTime + 0;
@@ -25,12 +26,12 @@ for n = 2:4
     data(n).T_mean = outerjoin(data(n).T_mean, ossi(n).T_mean, 'Type', 'left', 'MergeKeys', true);
 end
 
-% combine data
+% merge data
 data(1).T_mean = [data(2).T_mean; data(3).T_mean; data(4).T_mean]; % mean of each time bin
 data(1).T_std = [data(2).T_std; data(3).T_std; data(4).T_std]; % standard deviation of each time bin
 data(1).T_wind = [data(2).T_wind; data(3).T_wind; data(4).T_wind]; % wind statistics for each time bin
 
-% assign variables
+% declare variables
 for n = 1:4
     t{n} = data(n).T_mean.AeolusTime; % elapsed time since start first deployment [s]
 
@@ -54,14 +55,15 @@ for n = 1:4
     cv_k{n} = sqrt(tke{n}) ./ speed{n} .* 100; % coefficient of variation (wind) [%]
 end
 
+% declare constants
 Z = [.035, .09, .155, .21, .275, .34, .585, .725]'; % sensor height above surface [m]
 
-% conditional statements
+% conditional statements: wind direction
 along = dir{1} <= 7.2 | dir{1} >= 347.2 | (dir{1} <= 207.2 & dir{1} >= 187.2);
 obliq = (dir{1} > 297.2 & dir{1} < 347.2) | (dir{1} < 257.2 & dir{1} > 207.2);
 cross = dir{1} <= 297.2 & dir{1} >= 257.2;
 
-%% Plot 1
+%% Plot 1: saltation intensity(shear velocity) [conditional]
 figure2
 scatter(shear{1}(along), mu{1}(along), 100, nap{1}(along), '^', 'LineWidth', 1.5); hold on
 scatter(shear{1}(obliq), mu{1}(obliq), 100, nap{1}(obliq), 'o', 'LineWidth', 1.5);
@@ -77,14 +79,14 @@ ylabel '$\overline{\mu}_y$ ($cnts\,s^{-1}$)'
 legend 'alongshore' 'oblique' 'cross-shore'
 axis square
 
-%% Plot 2
+%% Plot 2: saltation intensity(shear velocity) [fit]
 OK = mu{1} >= 10 & (along | (obliq & nap{1} <= 0.1));
 
 x = shear{1}(OK);
 y = mu{1}(OK);
 
 X = log10(x);
-Y = log10(y); % convert both variables to log's
+Y = log10(y);
 
 fit = 950.605 * shear{1}(OK).^(4.065999999999999);
 
@@ -102,7 +104,7 @@ text(0.53, 30, str, 'FontSize', 34)
 grid on
 axis square
 
-%% Vertical sensor array
+%% Plot 3: vertical sensor array
 QV = nanmean(qv{1})' ./ nanmax(nanmean(qv{1})) .* 100;
 
 figure2
@@ -123,10 +125,10 @@ grid on
 box off
 axis square
 
-%% Sensor sensitivity
-Q2 = q{2}(~any(isnan(q{2}(:, [1:24, 26, 28:32])), 2), :); % exclude 25 and 27
-Q3 = q{3}(~any(isnan(q{3}(:, [1:14, 16:32])), 2), :); % exclude 15
-Q4 = q{4}(~any(isnan(q{4}(:, [1:18, 20:32])), 2), :); % exclude 19
+%% Plot 4: sensor sensitivity
+Q2 = q{2}(~any(isnan(q{2}(:, [1:24, 26, 28:32])), 2), :); % exclude #25 and #27
+Q3 = q{3}(~any(isnan(q{3}(:, [1:14, 16:32])), 2), :); % exclude #15
+Q4 = q{4}(~any(isnan(q{4}(:, [1:18, 20:32])), 2), :); % exclude #19
 
 figure2
 s(1) = scatter(1:32, nanmean(Q2), 100, 'LineWidth', 3, ...
