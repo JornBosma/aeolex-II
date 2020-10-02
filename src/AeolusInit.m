@@ -8,13 +8,8 @@ basePath = strrep(which('AeolusInit'),'AeolusInit.m','');
 
 % add paths
 addpath(basePath);
-% addpath(genpath([basePath 'code']));
-% addpath(genpath([basePath 'GerbenCode']));
-% addpath(genpath([basePath 'db']));
 addpath(genpath([basePath '../data']));
 addpath(genpath([basePath '../results']));
-
-% addpath(genpath('/Users/jwb/Documents/MATLAB/Add-Ons/'));
 
 % set default settings
 set(groot,'defaultTextInterpreter','latex');
