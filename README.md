@@ -1,18 +1,29 @@
 # Aeolian streamers
 
 <p align="center">
-  <img src="results/figures/Streamers.png" width="600px" alt="Sherloq" />
-  <br><b>Aeolian streamers on a beach</b>
+  <img src="results/figures/Streamers.png" width="800px" alt="Streamers" />
+  <br><b>Contrast-enhanced picture of aeolian streamers on a beach</b>
 </p>
 
 ## Introduction
 
-Trend analysis of aeolian streamer behaviour for various wind conditions.
+Trend analysis of aeolian streamer behaviour for various wind conditions by running MATLAB file "trendAnalysis.m". Solely tested on MATLAB R2019b and later versions.
 
 
-## Version
+### Repository version
 
 Version 0.1.2
+
+
+## Generated figures
+
+Plot 1: Saltation intensity as a function of shear velocity.
+
+Plot 2: Fit of plot 1 (note the logarithmic y-axis).
+
+Plot 3: Determine height of the saltation layer.
+
+Plot 4: Check for sensitivity equality amongst all sensors.
 
 
 ## Project organization
